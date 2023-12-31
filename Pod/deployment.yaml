@@ -1,1 +1,22 @@
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-helloapp-deployment
+  labels:
+    app: django-hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: django-hello
+  template:
+    metadata:
+      labels:
+        app: django-hello
+    spec:
+      containers:
+      - name: django-helloapp
+        image: manojbaws/django-helloapp:1.0
+        ports:
+        - containerPort: 8000
